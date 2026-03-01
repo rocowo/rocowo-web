@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RoCoWo Logo</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 40px; padding: 40px; }
+  .label { color: #444; font-family: sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: -30px; }
+  .logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 600px; height: 240px; }
+  .diamonds { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .wordmark { position: relative; z-index: 2; font-family: 'Comfortaa', 'Quicksand', sans-serif; font-weight: 600; letter-spacing: 0.18em; color: #fff; display: flex; align-items: baseline; }
+  .wordmark .upper { font-size: 3.2rem; line-height: 1; }
+  .wordmark .lower { font-size: 2rem; line-height: 1; }
+
+  /* Light version */
+  .logo-wrap-light { background: #fff; border-radius: 12px; }
+  .logo-wrap-light .wordmark { color: #111; }
+  .logo-wrap-light .diamond-stroke { stroke: #bbb; }
+</style>
+</head>
+<body>
+
+<div class="label">Dark Version</div>
+<div class="logo-wrap">
+  <!-- Concentric diamonds SVG -->
+  <svg class="diamonds" width="560" height="220" viewBox="0 0 560 220">
+    <!-- Outer diamond -->
+    <polygon points="280,4 556,110 280,216 4,110" fill="none" stroke="#555" stroke-width="1.2" class="diamond-stroke"/>
+    <!-- Middle diamond -->
+    <polygon points="280,28 532,110 280,192 28,110" fill="none" stroke="#555" stroke-width="1.2" class="diamond-stroke"/>
+    <!-- Inner diamond -->
+    <polygon points="280,52 508,110 280,168 52,110" fill="none" stroke="#555" stroke-width="1.2" class="diamond-stroke"/>
+  </svg>
+  <!-- Wordmark -->
+  <div class="wordmark">
+    <span class="upper">R</span><span class="lower">o</span><span class="upper">C</span><span class="lower">o</span><span class="upper">W</span><span class="lower">o</span>
+  </div>
+</div>
+
+<div class="label">Light Version</div>
+<div class="logo-wrap logo-wrap-light">
+  <svg class="diamonds" width="560" height="220" viewBox="0 0 560 220">
+    <polygon points="280,4 556,110 280,216 4,110" fill="none" stroke="#ccc" stroke-width="1.2"/>
+    <polygon points="280,28 532,110 280,192 28,110" fill="none" stroke="#ccc" stroke-width="1.2"/>
+    <polygon points="280,52 508,110 280,168 52,110" fill="none" stroke="#ccc" stroke-width="1.2"/>
+  </svg>
+  <div class="wordmark">
+    <span class="upper">R</span><span class="lower">o</span><span class="upper">C</span><span class="lower">o</span><span class="upper">W</span><span class="lower">o</span>
+  </div>
+</div>
+
+<div class="label">With Purple O's</div>
+<div class="logo-wrap">
+  <svg class="diamonds" width="560" height="220" viewBox="0 0 560 220">
+    <polygon points="280,4 556,110 280,216 4,110" fill="none" stroke="#555" stroke-width="1.2"/>
+    <polygon points="280,28 532,110 280,192 28,110" fill="none" stroke="#555" stroke-width="1.2"/>
+    <polygon points="280,52 508,110 280,168 52,110" fill="none" stroke="#555" stroke-width="1.2"/>
+  </svg>
+  <div class="wordmark">
+    <span class="upper">R</span><span class="lower" style="color:#7c6dfa">o</span><span class="upper">C</span><span class="lower" style="color:#7c6dfa">o</span><span class="upper">W</span><span class="lower" style="color:#7c6dfa">o</span>
+  </div>
+</div>
+
+</body>
+</html>
