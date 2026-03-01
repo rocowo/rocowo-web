@@ -2,94 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>RoCoWo Logo — Exact</title>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<title>RoCoWo Logo</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #222; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 40px; padding: 40px; }
-  canvas { display: block; }
+  body { background: #222; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 48px; padding: 48px; }
   .label { color: #555; font-family: sans-serif; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+  svg { display: block; }
 </style>
 </head>
 <body>
 
-<div class="label">Exact Recreation</div>
-<canvas id="logo" width="710" height="670"></canvas>
+<div class="label">Dark</div>
+<svg width="670" height="670" viewBox="0 0 670 670" xmlns="http://www.w3.org/2000/svg">
+  <rect width="670" height="670" fill="#0D0D0D"/>
+  <!-- Concentric diamonds centered at 335,280 -->
+  <!-- Outer -->
+  <polygon points="335,75 590,280 335,485 80,280" fill="none" stroke="#777" stroke-width="2"/>
+  <!-- Middle -->
+  <polygon points="335,108 557,280 335,452 113,280" fill="none" stroke="#777" stroke-width="2"/>
+  <!-- Inner -->
+  <polygon points="335,141 524,280 335,419 146,280" fill="none" stroke="#777" stroke-width="2"/>
+  <!-- Text: RoCoWo — large, spanning full width, baseline ~430 -->
+  <text font-family="'Raleway', sans-serif" font-weight="400" fill="#F2F2F2" text-anchor="middle" x="335" y="445">
+    <tspan font-size="155" dy="0">R</tspan><tspan font-size="105" dy="18" baseline-shift="-8">o</tspan><tspan font-size="155" dy="-18">C</tspan><tspan font-size="105" dy="18" baseline-shift="-8">o</tspan><tspan font-size="155" dy="-18">W</tspan><tspan font-size="105" dy="18" baseline-shift="-8">o</tspan>
+  </text>
+</svg>
 
-<script>
-const canvas = document.getElementById('logo');
-const ctx = canvas.getContext('2d');
-
-const W = 710, H = 670;
-const cx = 355, cy = 260; // diamond center — moved up
-
-// Background
-ctx.fillStyle = '#0D0D0D';
-ctx.fillRect(0, 0, W, H);
-
-// Draw concentric diamonds
-function drawDiamond(cx, cy, halfDiag, color, lineWidth) {
-  ctx.beginPath();
-  ctx.moveTo(cx, cy - halfDiag);  // top
-  ctx.lineTo(cx + halfDiag, cy);  // right
-  ctx.lineTo(cx, cy + halfDiag);  // bottom
-  ctx.lineTo(cx - halfDiag, cy);  // left
-  ctx.closePath();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = lineWidth;
-  ctx.stroke();
-}
-
-// Outer: diagonal ~340px → halfDiag = 170
-drawDiamond(cx, cy, 170, '#808080', 2.5);
-// Middle: diagonal ~270px → halfDiag = 135
-drawDiamond(cx, cy, 135, '#808080', 2.5);
-// Inner: diagonal ~200px → halfDiag = 100
-drawDiamond(cx, cy, 100, '#808080', 2.5);
-
-// Text
-// Wait for font to load
-document.fonts.ready.then(() => {
-  ctx.fillStyle = '#F0F0F0';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'alphabetic';
-
-  const baselineY = 450;
-  const upperSize = 108;
-  const lowerSize = 72;
-  const letterSpacing = 2;
-
-  const chars = [
-    { ch: 'R', upper: true },
-    { ch: 'o', upper: false },
-    { ch: 'C', upper: true },
-    { ch: 'o', upper: false },
-    { ch: 'W', upper: true },
-    { ch: 'o', upper: false },
-  ];
-
-  // Measure total width
-  let totalWidth = 0;
-  const widths = chars.map(c => {
-    ctx.font = `300 ${c.upper ? upperSize : lowerSize}px 'Raleway', sans-serif`;
-    const w = ctx.measureText(c.ch).width;
-    totalWidth += w;
-    return w;
-  });
-  totalWidth += letterSpacing * (chars.length - 1);
-
-  // Draw centered
-  let x = cx - totalWidth / 2;
-  chars.forEach((c, i) => {
-    ctx.font = `300 ${c.upper ? upperSize : lowerSize}px 'Raleway', sans-serif`;
-    ctx.textAlign = 'left';
-    // Align lowercase baseline to match uppercase baseline
-    const yOff = c.upper ? 0 : (upperSize - lowerSize) * 0.08;
-    ctx.fillText(c.ch, x, baselineY + yOff);
-    x += widths[i] + letterSpacing;
-  });
-});
-</script>
+<div class="label">Light</div>
+<svg width="670" height="670" viewBox="0 0 670 670" xmlns="http://www.w3.org/2000/svg">
+  <rect width="670" height="670" fill="#FFFFFF"/>
+  <polygon points="335,75 590,280 335,485 80,280" fill="none" stroke="#ccc" stroke-width="2"/>
+  <polygon points="335,108 557,280 335,452 113,280" fill="none" stroke="#ccc" stroke-width="2"/>
+  <polygon points="335,141 524,280 335,419 146,280" fill="none" stroke="#ccc" stroke-width="2"/>
+  <text font-family="'Raleway', sans-serif" font-weight="400" fill="#111111" text-anchor="middle" x="335" y="445">
+    <tspan font-size="155" dy="0">R</tspan><tspan font-size="105" dy="18">o</tspan><tspan font-size="155" dy="-18">C</tspan><tspan font-size="105" dy="18">o</tspan><tspan font-size="155" dy="-18">W</tspan><tspan font-size="105" dy="18">o</tspan>
+  </text>
+</svg>
 
 </body>
 </html>
