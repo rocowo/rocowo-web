@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RoCoWo Logo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&family=DM+Sans:wght@700&family=Outfit:wght@700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0f; padding: 40px 24px; font-family: 'Inter', sans-serif; color: #e0e0e0; }
+  h1 { font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+  .sub { font-size: 0.8rem; color: #555; margin-bottom: 40px; }
+  .variants { display: flex; flex-direction: column; gap: 24px; }
+  .variant { background: #000; border-radius: 16px; padding: 48px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .variant-light { background: #ffffff; }
+  .variant-label { position: absolute; top: 12px; left: 16px; font-size: 0.65rem; color: #333; letter-spacing: 1px; text-transform: uppercase; }
+  .variant-light .variant-label { color: #ccc; }
+
+  /* FONT VARIANTS */
+  .logo { display: flex; align-items: baseline; }
+  .logo .w { color: #ffffff; }
+  .logo .o { color: #7c6dfa; }
+  .logo-light .w { color: #111111; }
+  .logo-light .o { color: #7c6dfa; }
+
+  .f-inter { font-family: 'Inter', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
+  .f-space { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; letter-spacing: -1px; }
+  .f-outfit { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; }
+  .f-syne { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: 2px; }
+  .f-dm { font-family: 'DM Sans', sans-serif; font-size: 3.5rem; font-weight: 700; letter-spacing: -1px; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #000; border-radius: 16px; overflow: hidden; }
+  .pair .variant { border-radius: 0; }
+  .pair .variant-light { background: #fff; }
+  .pair-label { font-size: 0.65rem; color: #444; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .section { margin-bottom: 32px; }
+</style>
+</head>
+<body>
+
+<h1>RoCoWo Wordmark</h1>
+<p class="sub">5 font options — dark & light preview for each</p>
+
+<div class="variants">
+
+  <!-- Inter -->
+  <div class="section">
+    <div class="pair-label">A — Inter (Sharp & Modern)</div>
+    <div class="pair">
+      <div class="variant">
+        <div class="logo f-inter"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+      <div class="variant variant-light">
+        <div class="logo logo-light f-inter"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Space Grotesk -->
+  <div class="section">
+    <div class="pair-label">B — Space Grotesk (Friendly & Tech)</div>
+    <div class="pair">
+      <div class="variant">
+        <div class="logo f-space"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+      <div class="variant variant-light">
+        <div class="logo logo-light f-space"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outfit -->
+  <div class="section">
+    <div class="pair-label">C — Outfit (Clean & Rounded)</div>
+    <div class="pair">
+      <div class="variant">
+        <div class="logo f-outfit"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+      <div class="variant variant-light">
+        <div class="logo logo-light f-outfit"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Syne -->
+  <div class="section">
+    <div class="pair-label">D — Syne (Bold & Wide)</div>
+    <div class="pair">
+      <div class="variant">
+        <div class="logo f-syne"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+      <div class="variant variant-light">
+        <div class="logo logo-light f-syne"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DM Sans -->
+  <div class="section">
+    <div class="pair-label">E — DM Sans (Soft & Professional)</div>
+    <div class="pair">
+      <div class="variant">
+        <div class="logo f-dm"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+      <div class="variant variant-light">
+        <div class="logo logo-light f-dm"><span class="w">R</span><span class="o">o</span><span class="w">C</span><span class="o">o</span><span class="w">W</span><span class="o">o</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
