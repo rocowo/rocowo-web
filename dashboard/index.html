@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoCoWo Command Center</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  /* LOGIN */
+  #login-screen { width: 100%; max-width: 380px; padding: 24px; }
+  .login-card { background: #111118; border: 1px solid #1e1e2e; border-radius: 16px; padding: 36px; }
+  .login-logo { font-size: 2rem; margin-bottom: 8px; }
+  .login-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .login-sub { font-size: 0.8rem; color: #555; margin-bottom: 28px; }
+  .login-input { width: 100%; background: #0a0a0f; border: 1px solid #2a2a3e; border-radius: 8px; padding: 12px 16px; color: #e0e0e0; font-size: 0.95rem; outline: none; margin-bottom: 12px; }
+  .login-input:focus { border-color: #7c6dfa; }
+  .login-btn { width: 100%; background: #7c6dfa; color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  .login-btn:hover { background: #6b5ce7; }
+  .login-error { color: #f87171; font-size: 0.8rem; margin-top: 8px; display: none; }
+
+  /* DASHBOARD */
+  #dashboard { display: none; width: 100%; padding: 24px; }
+  h1 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 0.8rem; color: #555; margin-bottom: 24px; }
+  .section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #444; margin: 28px 0 12px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .card { background: #111118; border: 1px solid #1e1e2e; border-radius: 12px; padding: 20px; }
+  .card-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 12px; }
+  .big-number { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1; }
+  .big-number span { font-size: 1rem; color: #555; font-weight: 400; }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: #666; }
+  .stat-value { color: #e0e0e0; font-weight: 500; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+  .badge-green { background: #0d2b1a; color: #34d399; }
+  .badge-blue { background: #0d1f3c; color: #60a5fa; }
+  .progress-bar { background: #1e1e2e; border-radius: 4px; height: 6px; margin-top: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #7c6dfa, #a78bfa); }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #555; margin-top: 4px; }
+  .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-free { color: #34d399; font-weight: 600; }
+  .cost-paid { color: #fbbf24; font-weight: 600; }
+  .cost-variable { color: #60a5fa; font-weight: 600; }
+  .total-row { display: flex; justify-content: space-between; padding: 12px 0 0 0; font-size: 0.9rem; font-weight: 700; border-top: 1px solid #2a2a3e; margin-top: 4px; }
+  .sec-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
+  .sec-item:last-child { border-bottom: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #34d399; }
+  .dot-yellow { background: #fbbf24; }
+  .logout-btn { float: right; background: none; border: 1px solid #2a2a3e; color: #555; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; cursor: pointer; }
+  .logout-btn:hover { color: #e0e0e0; border-color: #555; }
+  .updated { font-size: 0.7rem; color: #2a2a3a; margin-top: 20px; text-align: right; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">🌿</div>
+    <div class="login-title">RoCoWo Command Center</div>
+    <div class="login-sub">Sign in to continue</div>
+    <input type="password" id="password-input" class="login-input" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Sign In</button>
+    <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <h1>⚡ RoCoWo Command Center <button class="logout-btn" onclick="logout()">Sign out</button></h1>
+  <p class="subtitle" id="timestamp"></p>
+
+  <div class="section-title">💸 Cost Tracker</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">🤖 AI — Session Estimate</div>
+      <div class="big-number" id="ai-cost">$0.00</div>
+      <div style="margin-top:16px;">
+        <div class="stat-row"><span class="stat-label">Model</span><span class="stat-value">claude-sonnet-4-6</span></div>
+        <div class="stat-row"><span class="stat-label">Context Used</span><span class="stat-value">86k / 200k (43%)</span></div>
+        <div class="stat-row"><span class="stat-label">Cache Hit Rate</span><span class="stat-value">34%</span></div>
+        <div class="stat-row"><span class="stat-label">Tokens In (new)</span><span class="stat-value">~193k</span></div>
+        <div class="stat-row"><span class="stat-label">Tokens Out</span><span class="stat-value">~1.7k</span></div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:43%"></div></div>
+      <div class="progress-label"><span>86k used</span><span>200k max</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📅 Monthly Fixed Costs</div>
+      <div class="cost-row"><span>Anthropic API</span><span class="cost-variable">Variable</span></div>
+      <div class="cost-row"><span>Brave Search API</span><span class="cost-free">Free ($5 credit/mo)</span></div>
+      <div class="cost-row"><span>Google Cloud APIs</span><span class="cost-free">Free tier</span></div>
+      <div class="cost-row"><span>GitHub</span><span class="cost-free">Free</span></div>
+      <div class="cost-row"><span>Vercel</span><span class="cost-free">Free tier</span></div>
+      <div class="cost-row"><span>Tailscale</span><span class="cost-free">Free tier</span></div>
+      <div class="cost-row"><span>GoDaddy (rocowo.com)</span><span class="cost-paid">~$20/yr</span></div>
+      <div class="total-row"><span>Monthly Fixed</span><span class="cost-free">~$0 / month</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 Free Tier Limits</div>
+      <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value">2,000/mo</span></div>
+      <div class="stat-row"><span class="stat-label">Vercel Bandwidth</span><span class="stat-value">100 GB/mo</span></div>
+      <div class="stat-row"><span class="stat-label">GitHub Repos</span><span class="stat-value">Unlimited public</span></div>
+      <div class="stat-row"><span class="stat-label">Google Drive</span><span class="stat-value">15 GB</span></div>
+      <div class="stat-row"><span class="stat-label">Gmail</span><span class="stat-value">15 GB</span></div>
+      <div class="stat-row"><span class="stat-label">Tailscale Devices</span><span class="stat-value">3 free</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">🏗️ Infrastructure</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">🔒 Security</div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>macOS Firewall</div><div style="font-size:0.72rem;color:#555">Enabled</div></div></div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>FileVault</div><div style="font-size:0.72rem;color:#555">On — disk encrypted</div></div></div>
+      <div class="sec-item"><div class="dot dot-yellow"></div><div><div>Time Machine</div><div style="font-size:0.72rem;color:#555">Not configured</div></div></div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>OpenClaw v2026.2.26</div><div style="font-size:0.72rem;color:#555">Up to date</div></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔌 Connected Services</div>
+      <div class="stat-row"><span class="stat-label">Google APIs</span><span class="stat-value"><span class="badge badge-green">14 scopes</span></span></div>
+      <div class="stat-row"><span class="stat-label">GitHub</span><span class="stat-value"><span class="badge badge-green">rocowo</span></span></div>
+      <div class="stat-row"><span class="stat-label">Vercel</span><span class="stat-value"><span class="badge badge-green">rocowo-web</span></span></div>
+      <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value"><span class="badge badge-green">Active</span></span></div>
+      <div class="stat-row"><span class="stat-label">Tailscale</span><span class="stat-value"><span class="badge badge-green">100.96.19.76</span></span></div>
+      <div class="stat-row"><span class="stat-label">Domain</span><span class="stat-value">rocowo.com</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌐 Website Pipeline</div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>DNS configured</div><div style="font-size:0.72rem;color:#555">rocowo.com → Vercel</div></div></div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>GitHub repo</div><div style="font-size:0.72rem;color:#555">rocowo/rocowo-web</div></div></div>
+      <div class="sec-item"><div class="dot dot-green"></div><div><div>Vercel connected</div><div style="font-size:0.72rem;color:#555">Auto-deploy on push</div></div></div>
+      <div class="sec-item"><div class="dot dot-yellow"></div><div><div>Website code</div><div style="font-size:0.72rem;color:#555">Coming soon</div></div></div>
+    </div>
+  </div>
+
+  <div class="section-title">🚀 Ideas Pipeline</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">💡 Ideas</div>
+      <div style="color:#333; font-size:0.85rem; padding:12px 0;">No ideas logged yet — pitch incoming!</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 Day 1 — Feb 28, 2026</div>
+      <div style="font-size:0.82rem; line-height:1.9; color:#888;">
+        ✅ Security hardened (FileVault + Firewall)<br>
+        ✅ Named Sage 🌿<br>
+        ✅ Gmail + 14 Google APIs<br>
+        ✅ GitHub (github.com/rocowo)<br>
+        ✅ Vercel + rocowo.com live<br>
+        ✅ Brave Search active<br>
+        ✅ Tailscale connected<br>
+        ✅ Dashboard deployed<br>
+        🔄 Website — next
+      </div>
+    </div>
+  </div>
+
+  <p class="updated" id="last-updated"></p>
+</div>
+
+<script>
+  // Simple password auth (stored in sessionStorage)
+  const PASSWORD = 'rocowo2026';
+
+  function login() {
+    const val = document.getElementById('password-input').value;
+    if (val === PASSWORD) {
+      sessionStorage.setItem('auth', '1');
+      showDashboard();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    sessionStorage.removeItem('auth');
+    document.getElementById('dashboard').style.display = 'none';
+    document.body.style.alignItems = 'center';
+    document.getElementById('login-screen').style.display = 'block';
+  }
+
+  function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.body.style.alignItems = 'flex-start';
+    document.getElementById('dashboard').style.display = 'block';
+
+    const now = new Date();
+    document.getElementById('timestamp').textContent =
+      now.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) +
+      ' · ' + now.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
+    document.getElementById('last-updated').textContent = 'Last updated: ' + now.toLocaleTimeString();
+
+    const cost = (193000/1e6*3) + (99000/1e6*0.30) + (1700/1e6*15);
+    document.getElementById('ai-cost').innerHTML = '$' + cost.toFixed(2) + ' <span>est. today</span>';
+  }
+
+  if (sessionStorage.getItem('auth') === '1') showDashboard();
+</script>
+
+</body>
+</html>
