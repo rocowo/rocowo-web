@@ -21,53 +21,66 @@
   .login-error { color: #f87171; font-size: 0.8rem; margin-top: 8px; display: none; }
 
   /* DASHBOARD */
-  #dashboard { display: none; width: 100%; padding: 24px; }
+  #dashboard { display: none; width: 100%; padding: 24px; max-width: 1400px; margin: 0 auto; }
   h1 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
   .subtitle { font-size: 0.8rem; color: #555; margin-bottom: 24px; }
   .section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #444; margin: 28px 0 12px 0; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .grid-2 { grid-column: span 2; }
   .card { background: #111118; border: 1px solid #1e1e2e; border-radius: 12px; padding: 20px; }
   .card-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 12px; }
-  .big-number { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1; }
+  .big-number { font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; }
   .big-number span { font-size: 1rem; color: #555; font-weight: 400; }
+  .big-number.green { color: #34d399; }
+  .big-number.red { color: #f87171; }
+  .big-number.blue { color: #60a5fa; }
   .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
   .stat-row:last-child { border-bottom: none; }
   .stat-label { color: #666; }
   .stat-value { color: #e0e0e0; font-weight: 500; }
   .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
   .badge-green { background: #0d2b1a; color: #34d399; }
+  .badge-yellow { background: #2b2200; color: #fbbf24; }
   .badge-blue { background: #0d1f3c; color: #60a5fa; }
-  .progress-bar { background: #1e1e2e; border-radius: 4px; height: 6px; margin-top: 8px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #7c6dfa, #a78bfa); }
-  .progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #555; margin-top: 4px; }
-  .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
-  .cost-row:last-child { border-bottom: none; }
-  .cost-free { color: #34d399; font-weight: 600; }
-  .cost-paid { color: #fbbf24; font-weight: 600; }
-  .cost-variable { color: #60a5fa; font-weight: 600; }
-  .total-row { display: flex; justify-content: space-between; padding: 12px 0 0 0; font-size: 0.9rem; font-weight: 700; border-top: 1px solid #2a2a3e; margin-top: 4px; }
+  .badge-red { background: #2b0d0d; color: #f87171; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tab { padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid #2a2a3e; color: #555; background: none; }
+  .tab.active { background: #7c6dfa; color: #fff; border-color: #7c6dfa; }
+  .cost-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 8px; }
+  .cost-table th { text-align: left; color: #444; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 6px 0; border-bottom: 1px solid #1a1a28; }
+  .cost-table td { padding: 9px 0; border-bottom: 1px solid #111118; color: #aaa; }
+  .cost-table td:last-child { text-align: right; color: #e0e0e0; font-weight: 600; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; color: #fff; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a3e; }
+  .pnl-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a3e; }
   .sec-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
   .sec-item:last-child { border-bottom: none; }
   .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .dot-green { background: #34d399; }
   .dot-yellow { background: #fbbf24; }
+  .dot-red { background: #f87171; }
+  .milestone-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
+  .milestone-item:last-child { border-bottom: none; }
+  .milestone-check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #2a2a3e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; }
+  .milestone-check.done { background: #0d2b1a; border-color: #34d399; color: #34d399; }
+  .milestone-check.pending { color: #333; }
+  .milestone-label { flex: 1; }
+  .milestone-label.done { color: #666; text-decoration: line-through; }
+  .milestone-date { font-size: 0.72rem; color: #555; }
   .logout-btn { float: right; background: none; border: 1px solid #2a2a3e; color: #555; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; cursor: pointer; }
   .logout-btn:hover { color: #e0e0e0; border-color: #555; }
+  .idea-item { padding: 10px 0; border-bottom: 1px solid #1a1a28; font-size: 0.85rem; }
+  .idea-item:last-child { border-bottom: none; }
   .updated { font-size: 0.7rem; color: #2a2a3a; margin-top: 20px; text-align: right; }
-  .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
-  .tab { padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid #2a2a3e; color: #555; background: none; }
-  .tab.active { background: #7c6dfa; color: #fff; border-color: #7c6dfa; }
-  .cost-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 8px; }
-  .cost-table th { text-align: left; color: #444; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 6px 0; border-bottom: 1px solid #1a1a28; }
-  .cost-table td { padding: 8px 0; border-bottom: 1px solid #111118; color: #aaa; }
-  .cost-table td:last-child { text-align: right; color: #e0e0e0; font-weight: 600; }
-  .cost-table tr:last-child td { border-bottom: none; }
-  .cost-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; color: #fff; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a3e; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .kpi { background: #0d0d14; border: 1px solid #1a1a28; border-radius: 10px; padding: 16px; text-align: center; }
+  .kpi-value { font-size: 1.8rem; font-weight: 700; color: #fff; }
+  .kpi-label { font-size: 0.7rem; color: #555; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">🌿</div>
@@ -84,39 +97,93 @@
   <h1>⚡ RoCoWo Command Center <button class="logout-btn" onclick="logout()">Sign out</button></h1>
   <p class="subtitle" id="timestamp"></p>
 
-  <div class="section-title">💸 Cost Tracker</div>
-
-  <!-- Period Tabs -->
-  <div class="tabs">
-    <button class="tab active" onclick="setCostPeriod('day', this)">Today</button>
-    <button class="tab" onclick="setCostPeriod('week', this)">This Week</button>
-    <button class="tab" onclick="setCostPeriod('month', this)">This Month</button>
-    <button class="tab" onclick="setCostPeriod('year', this)">This Year</button>
+  <!-- KPI ROW -->
+  <div class="section-title">📊 Key Numbers</div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-value green" id="kpi-revenue">$0</div><div class="kpi-label">Revenue Today</div></div>
+    <div class="kpi"><div class="kpi-value red" id="kpi-costs">$0</div><div class="kpi-label">Costs Today</div></div>
+    <div class="kpi"><div class="kpi-value" id="kpi-profit">$0</div><div class="kpi-label">P&L Today</div></div>
+    <div class="kpi"><div class="kpi-value blue" id="kpi-visitors">0</div><div class="kpi-label">Visitors Today</div></div>
+    <div class="kpi"><div class="kpi-value" id="kpi-subscribers">0</div><div class="kpi-label">Subscribers</div></div>
+    <div class="kpi"><div class="kpi-value" id="kpi-commits">0</div><div class="kpi-label">Commits Today</div></div>
+    <div class="kpi"><div class="kpi-value" id="kpi-unread">0</div><div class="kpi-label">Unread Email</div></div>
+    <div class="kpi"><div class="kpi-value green" id="kpi-uptime">100%</div><div class="kpi-label">Uptime</div></div>
   </div>
 
+  <!-- P&L -->
+  <div class="section-title">💰 Profit & Loss</div>
+  <div class="tabs">
+    <button class="tab active" onclick="setPeriod('day',this,'pnl')">Today</button>
+    <button class="tab" onclick="setPeriod('week',this,'pnl')">This Week</button>
+    <button class="tab" onclick="setPeriod('month',this,'pnl')">This Month</button>
+    <button class="tab" onclick="setPeriod('year',this,'pnl')">This Year</button>
+  </div>
   <div class="grid">
-    <!-- Cost Breakdown -->
-    <div class="card" style="grid-column: span 2;">
-      <div class="card-title">💳 Spending Breakdown</div>
+    <div class="card">
+      <div class="card-title">📈 Revenue</div>
+      <div class="big-number green" id="pnl-revenue">$0.00</div>
+      <div style="margin-top:16px;color:#333;font-size:0.82rem;">No revenue yet — first dollar incoming 💪</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📉 Costs</div>
       <table class="cost-table">
         <thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th></tr></thead>
         <tbody id="cost-table-body"></tbody>
       </table>
-      <div class="cost-total"><span id="cost-period-label">Today's Total</span><span id="cost-total-amount">$0.00</span></div>
+      <div class="cost-total"><span id="cost-period-label">Today's Costs</span><span id="cost-total-amount">$0.00</span></div>
     </div>
-
-    <!-- Free Tier Limits -->
     <div class="card">
-      <div class="card-title">📊 Free Tier Limits</div>
-      <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value">2,000/mo</span></div>
-      <div class="stat-row"><span class="stat-label">Vercel Bandwidth</span><span class="stat-value">100 GB/mo</span></div>
-      <div class="stat-row"><span class="stat-label">GitHub Repos</span><span class="stat-value">Unlimited public</span></div>
-      <div class="stat-row"><span class="stat-label">Google Drive</span><span class="stat-value">15 GB</span></div>
-      <div class="stat-row"><span class="stat-label">Gmail</span><span class="stat-value">15 GB</span></div>
-      <div class="stat-row"><span class="stat-label">Tailscale Devices</span><span class="stat-value">3 free</span></div>
+      <div class="card-title">⚖️ Net P&L</div>
+      <div class="big-number" id="pnl-net">$0.00</div>
+      <div style="margin-top:8px;font-size:0.75rem;color:#555;" id="pnl-period-label">Today</div>
+      <div style="margin-top:24px;">
+        <div class="stat-row"><span class="stat-label">Revenue</span><span class="stat-value green" id="pnl-rev-detail">$0.00</span></div>
+        <div class="stat-row"><span class="stat-label">Costs</span><span class="stat-value" id="pnl-cost-detail">$0.00</span></div>
+        <div class="stat-row"><span class="stat-label">Margin</span><span class="stat-value" id="pnl-margin">—</span></div>
+      </div>
     </div>
   </div>
 
+  <!-- WEBSITE & GROWTH -->
+  <div class="section-title">🌐 Website & Growth</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">👥 Traffic</div>
+      <div class="stat-row"><span class="stat-label">Visitors Today</span><span class="stat-value" id="visitors-today">0</span></div>
+      <div class="stat-row"><span class="stat-label">Visitors This Week</span><span class="stat-value" id="visitors-week">0</span></div>
+      <div class="stat-row"><span class="stat-label">Visitors This Month</span><span class="stat-value" id="visitors-month">0</span></div>
+      <div class="stat-row"><span class="stat-label">Email Subscribers</span><span class="stat-value" id="subscribers">0</span></div>
+      <div class="stat-row"><span class="stat-label">Conversion Rate</span><span class="stat-value" id="conversion">0%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔧 Dev Activity</div>
+      <div class="stat-row"><span class="stat-label">Commits Today</span><span class="stat-value" id="commits-today">0</span></div>
+      <div class="stat-row"><span class="stat-label">Commits This Week</span><span class="stat-value" id="commits-week">0</span></div>
+      <div class="stat-row"><span class="stat-label">Last Commit</span><span class="stat-value" id="last-commit">—</span></div>
+      <div class="stat-row"><span class="stat-label">Repo</span><span class="stat-value">github.com/rocowo</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📧 Inbox</div>
+      <div class="stat-row"><span class="stat-label">Unread (rocowo.com)</span><span class="stat-value" id="inbox-unread">0</span></div>
+      <div class="stat-row"><span class="stat-label">Last Checked</span><span class="stat-value" id="inbox-checked">—</span></div>
+      <div style="margin-top:12px;font-size:0.75rem;color:#555;">Sage monitors inbox and alerts on important emails</div>
+    </div>
+  </div>
+
+  <!-- MILESTONES -->
+  <div class="section-title">🏆 Milestones</div>
+  <div class="grid">
+    <div class="card grid-2">
+      <div class="card-title">🎯 Progress</div>
+      <div id="milestone-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💡 Ideas Pipeline</div>
+      <div id="ideas-list"><div style="color:#333;font-size:0.85rem;padding:12px 0;">No ideas logged yet — pitch incoming!</div></div>
+    </div>
+  </div>
+
+  <!-- INFRASTRUCTURE -->
   <div class="section-title">🏗️ Infrastructure</div>
   <div class="grid">
     <div class="card">
@@ -126,29 +193,26 @@
       <div class="sec-item"><div class="dot dot-yellow"></div><div><div>Time Machine</div><div style="font-size:0.72rem;color:#555">Not configured</div></div></div>
       <div class="sec-item"><div class="dot dot-green"></div><div><div>OpenClaw v2026.2.26</div><div style="font-size:0.72rem;color:#555">Up to date</div></div></div>
     </div>
-
     <div class="card">
       <div class="card-title">🔌 Connected Services</div>
       <div class="stat-row" style="cursor:pointer;" onclick="toggleScopes()">
         <span class="stat-label">Google APIs</span>
         <span class="stat-value"><span class="badge badge-green">14 scopes</span> <span id="scope-arrow" style="color:#555;font-size:0.75rem;">▼</span></span>
       </div>
-      <div id="scope-list" style="display:none; padding:8px 0 4px 0; border-bottom:1px solid #1a1a28;">
-        <div style="font-size:0.75rem; color:#aaa; line-height:2.2;">
-          <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Gmail (modify)<br>
-          <img src="https://calendar.google.com/googlecalendar/images/favicons_2020q4/calendar_4.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Google Calendar<br>
-          <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Drive<br>
-          <img src="https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Google Sheets<br>
-          <img src="https://ssl.gstatic.com/images/branding/product/1x/contacts_2022_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Contacts<br>
+      <div id="scope-list" style="display:none;padding:8px 0 4px;border-bottom:1px solid #1a1a28;">
+        <div style="font-size:0.75rem;color:#aaa;line-height:2.2;">
+          <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Gmail<br>
+          <img src="https://calendar.google.com/googlecalendar/images/favicons_2020q4/calendar_4.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Calendar<br>
+          <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Drive<br>
+          <img src="https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico" width="14" style="vertical-align:middle;margin-right:6px;"> Sheets<br>
+          <img src="https://ssl.gstatic.com/images/branding/product/1x/contacts_2022_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Contacts<br>
           <img src="https://www.youtube.com/favicon.ico" width="14" style="vertical-align:middle;margin-right:6px;"> YouTube<br>
-          <img src="https://www.google.com/images/icons/product/analytics-32.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Analytics<br>
-          <img src="https://www.google.com/images/icons/product/analytics-32.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Analytics (read-only)<br>
-          <img src="https://www.google.com/images/icons/product/search_console-32.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Search Console<br>
-          <img src="https://ssl.gstatic.com/images/branding/product/1x/maps_round_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Business Profile<br>
+          <img src="https://www.google.com/images/icons/product/analytics-32.png" width="14" style="vertical-align:middle;margin-right:6px;"> Analytics (+ read-only)<br>
+          <img src="https://www.google.com/images/icons/product/search_console-32.png" width="14" style="vertical-align:middle;margin-right:6px;"> Search Console<br>
+          <img src="https://ssl.gstatic.com/images/branding/product/1x/maps_round_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Business Profile<br>
           <img src="https://www.gstatic.com/images/branding/product/1x/google_ads_512dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Ads<br>
-          <img src="https://ssl.gstatic.com/docs/forms/device_home/android_192.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Forms (create)<br>
-          <img src="https://ssl.gstatic.com/docs/forms/device_home/android_192.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Forms (responses)<br>
-          <img src="https://ssl.gstatic.com/images/branding/product/1x/cloud_storage_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Google Cloud Storage
+          <img src="https://ssl.gstatic.com/docs/forms/device_home/android_192.png" width="14" style="vertical-align:middle;margin-right:6px;"> Forms (create + responses)<br>
+          <img src="https://ssl.gstatic.com/images/branding/product/1x/cloud_storage_32dp.png" width="14" style="vertical-align:middle;margin-right:6px;"> Cloud Storage
         </div>
       </div>
       <div class="stat-row"><span class="stat-label">GitHub</span><span class="stat-value"><span class="badge badge-green">rocowo</span></span></div>
@@ -157,35 +221,13 @@
       <div class="stat-row"><span class="stat-label">Tailscale</span><span class="stat-value"><span class="badge badge-green">100.96.19.76</span></span></div>
       <div class="stat-row"><span class="stat-label">Domain</span><span class="stat-value">rocowo.com</span></div>
     </div>
-
     <div class="card">
-      <div class="card-title">🌐 Website Pipeline</div>
-      <div class="sec-item"><div class="dot dot-green"></div><div><div>DNS configured</div><div style="font-size:0.72rem;color:#555">rocowo.com → Vercel</div></div></div>
-      <div class="sec-item"><div class="dot dot-green"></div><div><div>GitHub repo</div><div style="font-size:0.72rem;color:#555">rocowo/rocowo-web</div></div></div>
-      <div class="sec-item"><div class="dot dot-green"></div><div><div>Vercel connected</div><div style="font-size:0.72rem;color:#555">Auto-deploy on push</div></div></div>
-      <div class="sec-item"><div class="dot dot-yellow"></div><div><div>Website code</div><div style="font-size:0.72rem;color:#555">Coming soon</div></div></div>
-    </div>
-  </div>
-
-  <div class="section-title">🚀 Ideas Pipeline</div>
-  <div class="grid">
-    <div class="card">
-      <div class="card-title">💡 Ideas</div>
-      <div style="color:#333; font-size:0.85rem; padding:12px 0;">No ideas logged yet — pitch incoming!</div>
-    </div>
-    <div class="card">
-      <div class="card-title">📝 Day 1 — Feb 28, 2026</div>
-      <div style="font-size:0.82rem; line-height:1.9; color:#888;">
-        ✅ Security hardened (FileVault + Firewall)<br>
-        ✅ Named Sage 🌿<br>
-        ✅ Gmail + 14 Google APIs<br>
-        ✅ GitHub (github.com/rocowo)<br>
-        ✅ Vercel + rocowo.com live<br>
-        ✅ Brave Search active<br>
-        ✅ Tailscale connected<br>
-        ✅ Dashboard deployed<br>
-        🔄 Website — next
-      </div>
+      <div class="card-title">📊 Free Tier Limits</div>
+      <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value">2,000/mo</span></div>
+      <div class="stat-row"><span class="stat-label">Vercel Bandwidth</span><span class="stat-value">100 GB/mo</span></div>
+      <div class="stat-row"><span class="stat-label">GitHub</span><span class="stat-value">Unlimited public</span></div>
+      <div class="stat-row"><span class="stat-label">Google Drive</span><span class="stat-value">15 GB</span></div>
+      <div class="stat-row"><span class="stat-label">Tailscale Devices</span><span class="stat-value">3 free</span></div>
     </div>
   </div>
 
@@ -193,15 +235,139 @@
 </div>
 
 <script>
-  // Simple password auth (stored in sessionStorage)
   const PASSWORD = 'rocowo2026';
+
+  // ── METRICS DATA (updated by Sage) ──
+  const METRICS = {"updated":"2026-02-28T22:22:00-05:00","revenue":[],"costs":[{"date":"2026-02-28","category":"Anthropic API","description":"claude-sonnet-4-6 session","amount":0.61},{"date":"2026-02-28","category":"GoDaddy","description":"rocowo.com domain (annual, prorated)","amount":1.67}],"milestones":[{"label":"First session with Jason","date":"2026-02-28","done":true},{"label":"Security hardened","date":"2026-02-28","done":true},{"label":"Gmail + Google APIs live","date":"2026-02-28","done":true},{"label":"rocowo.com live","date":"2026-02-28","done":true},{"label":"Dashboard deployed","date":"2026-02-28","done":true},{"label":"First dollar earned","date":null,"done":false},{"label":"First $100 revenue","date":null,"done":false},{"label":"First $1,000/mo revenue","date":null,"done":false},{"label":"First $10,000/mo revenue","date":null,"done":false},{"label":"First $1M revenue","date":null,"done":false}],"ideas":[],"website":{"visitors_today":0,"visitors_week":0,"visitors_month":0,"subscribers":0,"conversion_rate":0},"inbox":{"unread":0,"last_checked":"2026-02-28T22:22:00-05:00"},"github":{"commits_today":8,"commits_week":8,"last_commit":"2026-02-28"},"system":{"uptime":"100%","openclaw_version":"2026.2.26","tailscale_ip":"100.96.19.76"}};
+
+  let currentPeriod = 'day';
+
+  function localToday() {
+    const n = new Date();
+    return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
+  }
+
+  function filterByPeriod(entries, period) {
+    const now = new Date();
+    return entries.filter(e => {
+      const d = new Date(e.date + 'T12:00:00');
+      if (period === 'day') return e.date === localToday();
+      if (period === 'week') { const w = new Date(now); w.setDate(now.getDate()-7); return d >= w; }
+      if (period === 'month') return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+      if (period === 'year') return d.getFullYear()===now.getFullYear();
+    });
+  }
+
+  function setPeriod(period, btn, group) {
+    currentPeriod = period;
+    btn.closest('.tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderPnL(period);
+  }
+
+  function renderPnL(period) {
+    const labels = { day:'Today', week:'This Week', month:'This Month', year:'This Year' };
+    const label = labels[period];
+
+    const costs = filterByPeriod(METRICS.costs, period);
+    const revenue = filterByPeriod(METRICS.revenue, period);
+    const totalCost = costs.reduce((s,e)=>s+e.amount,0);
+    const totalRev = revenue.reduce((s,e)=>s+e.amount,0);
+    const net = totalRev - totalCost;
+
+    // Cost table
+    const tbody = document.getElementById('cost-table-body');
+    tbody.innerHTML = costs.length === 0
+      ? '<tr><td colspan="4" style="color:#333;padding:16px 0;">No costs this period</td></tr>'
+      : costs.map(e=>`<tr><td>${e.date}</td><td>${e.category}</td><td style="color:#666">${e.description}</td><td>$${e.amount.toFixed(2)}</td></tr>`).join('');
+
+    document.getElementById('cost-period-label').textContent = label + ' Costs';
+    document.getElementById('cost-total-amount').textContent = '$' + totalCost.toFixed(2);
+    document.getElementById('pnl-revenue').textContent = '$' + totalRev.toFixed(2);
+    document.getElementById('pnl-net').textContent = (net >= 0 ? '+' : '') + '$' + Math.abs(net).toFixed(2);
+    document.getElementById('pnl-net').className = 'big-number ' + (net >= 0 ? 'green' : 'red');
+    document.getElementById('pnl-period-label').textContent = label;
+    document.getElementById('pnl-rev-detail').textContent = '$' + totalRev.toFixed(2);
+    document.getElementById('pnl-cost-detail').textContent = '$' + totalCost.toFixed(2);
+    document.getElementById('pnl-margin').textContent = totalRev > 0 ? ((net/totalRev)*100).toFixed(1)+'%' : '—';
+
+    // KPI row
+    const todayCosts = filterByPeriod(METRICS.costs,'day').reduce((s,e)=>s+e.amount,0);
+    const todayRev = filterByPeriod(METRICS.revenue,'day').reduce((s,e)=>s+e.amount,0);
+    const todayNet = todayRev - todayCosts;
+    document.getElementById('kpi-revenue').textContent = '$' + todayRev.toFixed(2);
+    document.getElementById('kpi-costs').textContent = '$' + todayCosts.toFixed(2);
+    document.getElementById('kpi-profit').textContent = (todayNet>=0?'+':'') + '$' + Math.abs(todayNet).toFixed(2);
+    document.getElementById('kpi-profit').className = 'kpi-value ' + (todayNet>=0?'green':'red');
+  }
+
+  function renderMilestones() {
+    const el = document.getElementById('milestone-list');
+    el.innerHTML = METRICS.milestones.map(m => `
+      <div class="milestone-item">
+        <div class="milestone-check ${m.done?'done':'pending'}">${m.done?'✓':'○'}</div>
+        <div class="milestone-label ${m.done?'done':''}">${m.label}</div>
+        <div class="milestone-date">${m.date||''}</div>
+      </div>`).join('');
+  }
+
+  function renderIdeas() {
+    const el = document.getElementById('ideas-list');
+    if (!METRICS.ideas.length) {
+      el.innerHTML = '<div style="color:#333;font-size:0.85rem;padding:12px 0;">No ideas logged yet — pitch incoming!</div>';
+      return;
+    }
+    el.innerHTML = METRICS.ideas.map(i=>`<div class="idea-item"><strong>${i.name}</strong><br><span style="color:#555;font-size:0.78rem;">${i.description}</span></div>`).join('');
+  }
+
+  function renderWebsite() {
+    const w = METRICS.website;
+    document.getElementById('visitors-today').textContent = w.visitors_today;
+    document.getElementById('visitors-week').textContent = w.visitors_week;
+    document.getElementById('visitors-month').textContent = w.visitors_month;
+    document.getElementById('subscribers').textContent = w.subscribers;
+    document.getElementById('conversion').textContent = w.conversion_rate + '%';
+    document.getElementById('kpi-visitors').textContent = w.visitors_today;
+    document.getElementById('kpi-subscribers').textContent = w.subscribers;
+  }
+
+  function renderGithub() {
+    const g = METRICS.github;
+    document.getElementById('commits-today').textContent = g.commits_today;
+    document.getElementById('commits-week').textContent = g.commits_week;
+    document.getElementById('last-commit').textContent = g.last_commit;
+    document.getElementById('kpi-commits').textContent = g.commits_today;
+  }
+
+  function renderInbox() {
+    const i = METRICS.inbox;
+    document.getElementById('inbox-unread').textContent = i.unread;
+    document.getElementById('inbox-checked').textContent = new Date(i.last_checked).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    document.getElementById('kpi-unread').textContent = i.unread;
+  }
+
+  function renderAll() {
+    renderPnL(currentPeriod);
+    renderMilestones();
+    renderIdeas();
+    renderWebsite();
+    renderGithub();
+    renderInbox();
+    document.getElementById('kpi-uptime').textContent = METRICS.system.uptime;
+  }
+
+  function toggleScopes() {
+    const list = document.getElementById('scope-list');
+    const arrow = document.getElementById('scope-arrow');
+    list.style.display = list.style.display==='none' ? 'block' : 'none';
+    arrow.textContent = list.style.display==='none' ? '▼' : '▲';
+  }
 
   function login() {
     const val = document.getElementById('password-input').value;
     if (val === PASSWORD) {
-      sessionStorage.setItem('auth', '1');
+      sessionStorage.setItem('auth','1');
       showDashboard();
-      loadCosts();
     } else {
       document.getElementById('login-error').style.display = 'block';
     }
@@ -218,78 +384,15 @@
     document.getElementById('login-screen').style.display = 'none';
     document.body.style.alignItems = 'flex-start';
     document.getElementById('dashboard').style.display = 'block';
-
     const now = new Date();
     document.getElementById('timestamp').textContent =
-      now.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) +
-      ' · ' + now.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
-    document.getElementById('last-updated').textContent = 'Last updated: ' + now.toLocaleTimeString();
-
-    const cost = (193000/1e6*3) + (99000/1e6*0.30) + (1700/1e6*15);
-    document.getElementById('ai-cost').innerHTML = '$' + cost.toFixed(2) + ' <span>est. today</span>';
+      now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) +
+      ' · ' + now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('last-updated').textContent = 'Last updated by Sage: ' + new Date(METRICS.updated).toLocaleString();
+    renderAll();
   }
 
-  let costData = [];
-  let currentPeriod = 'day';
-
-  async function loadCosts() {
-    // Embedded cost data — updated by Sage automatically
-    const data = {"entries":[{"date":"2026-02-28","category":"Anthropic API","description":"claude-sonnet-4-6 session","amount":0.61},{"date":"2026-02-28","category":"GoDaddy","description":"rocowo.com domain (annual, prorated)","amount":1.67}]};
-    costData = data.entries || [];
-    renderCosts(currentPeriod);
-  }
-
-  function setCostPeriod(period, btn) {
-    currentPeriod = period;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    renderCosts(period);
-  }
-
-  function renderCosts(period) {
-    const now = new Date();
-    const labels = { day: "Today's Total", week: "This Week's Total", month: "This Month's Total", year: "This Year's Total" };
-    document.getElementById('cost-period-label').textContent = labels[period];
-
-    const filtered = costData.filter(e => {
-      const d = new Date(e.date);
-      const localDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-      if (period === 'day') return e.date === localDate;
-      if (period === 'week') {
-        const weekAgo = new Date(now); weekAgo.setDate(now.getDate() - 7);
-        return d >= weekAgo;
-      }
-      if (period === 'month') return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
-      if (period === 'year') return d.getFullYear() === now.getFullYear();
-    });
-
-    const tbody = document.getElementById('cost-table-body');
-    if (filtered.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="4" style="color:#333;padding:16px 0;">No entries for this period</td></tr>';
-    } else {
-      tbody.innerHTML = filtered.map(e =>
-        `<tr><td>${e.date}</td><td>${e.category}</td><td style="color:#666;">${e.description}</td><td>$${e.amount.toFixed(2)}</td></tr>`
-      ).join('');
-    }
-
-    const total = filtered.reduce((sum, e) => sum + e.amount, 0);
-    document.getElementById('cost-total-amount').textContent = '$' + total.toFixed(2);
-  }
-
-  function toggleScopes() {
-    const list = document.getElementById('scope-list');
-    const arrow = document.getElementById('scope-arrow');
-    if (list.style.display === 'none') {
-      list.style.display = 'block';
-      arrow.textContent = '▲';
-    } else {
-      list.style.display = 'none';
-      arrow.textContent = '▼';
-    }
-  }
-
-  if (sessionStorage.getItem('auth') === '1') { showDashboard(); loadCosts(); }
+  if (sessionStorage.getItem('auth')==='1') showDashboard();
 </script>
-
 </body>
 </html>

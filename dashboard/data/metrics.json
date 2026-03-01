@@ -1,0 +1,42 @@
+{
+  "updated": "2026-02-28T22:22:00-05:00",
+  "revenue": [],
+  "costs": [
+    {"date":"2026-02-28","category":"Anthropic API","description":"claude-sonnet-4-6 session","amount":0.61},
+    {"date":"2026-02-28","category":"GoDaddy","description":"rocowo.com domain (annual, prorated)","amount":1.67}
+  ],
+  "milestones": [
+    {"label":"First session with Jason","date":"2026-02-28","done":true},
+    {"label":"Security hardened","date":"2026-02-28","done":true},
+    {"label":"Gmail + Google APIs live","date":"2026-02-28","done":true},
+    {"label":"rocowo.com live","date":"2026-02-28","done":true},
+    {"label":"Dashboard deployed","date":"2026-02-28","done":true},
+    {"label":"First dollar earned","date":null,"done":false},
+    {"label":"First $100 revenue","date":null,"done":false},
+    {"label":"First $1,000/mo revenue","date":null,"done":false},
+    {"label":"First $10,000/mo revenue","date":null,"done":false},
+    {"label":"First $1M revenue","date":null,"done":false}
+  ],
+  "ideas": [],
+  "website": {
+    "visitors_today": 0,
+    "visitors_week": 0,
+    "visitors_month": 0,
+    "subscribers": 0,
+    "conversion_rate": 0
+  },
+  "inbox": {
+    "unread": 0,
+    "last_checked": "2026-02-28T22:22:00-05:00"
+  },
+  "github": {
+    "commits_today": 8,
+    "commits_week": 8,
+    "last_commit": "2026-02-28"
+  },
+  "system": {
+    "uptime": "100%",
+    "openclaw_version": "2026.2.26",
+    "tailscale_ip": "100.96.19.76"
+  }
+}
