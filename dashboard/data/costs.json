@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-28T22:00:00-05:00",
+  "entries": [
+    {
+      "date": "2026-02-28",
+      "category": "Anthropic API",
+      "description": "claude-sonnet-4-6 session",
+      "amount": 0.61
+    },
+    {
+      "date": "2026-02-28",
+      "category": "GoDaddy",
+      "description": "rocowo.com domain (annual, prorated)",
+      "amount": 1.67
+    }
+  ],
+  "fixed": [
+    { "name": "GoDaddy (rocowo.com)", "monthly": 1.67, "notes": "~$20/yr" },
+    { "name": "Anthropic API", "monthly": null, "notes": "Variable — pay per use" },
+    { "name": "Brave Search", "monthly": 0, "notes": "Free ($5 credit/mo)" },
+    { "name": "Google Cloud", "monthly": 0, "notes": "Free tier" },
+    { "name": "GitHub", "monthly": 0, "notes": "Free" },
+    { "name": "Vercel", "monthly": 0, "notes": "Free tier" },
+    { "name": "Tailscale", "monthly": 0, "notes": "Free tier" }
+  ]
+}

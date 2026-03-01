@@ -54,6 +54,15 @@
   .logout-btn { float: right; background: none; border: 1px solid #2a2a3e; color: #555; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; cursor: pointer; }
   .logout-btn:hover { color: #e0e0e0; border-color: #555; }
   .updated { font-size: 0.7rem; color: #2a2a3a; margin-top: 20px; text-align: right; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+  .tab { padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid #2a2a3e; color: #555; background: none; }
+  .tab.active { background: #7c6dfa; color: #fff; border-color: #7c6dfa; }
+  .cost-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 8px; }
+  .cost-table th { text-align: left; color: #444; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 6px 0; border-bottom: 1px solid #1a1a28; }
+  .cost-table td { padding: 8px 0; border-bottom: 1px solid #111118; color: #aaa; }
+  .cost-table td:last-child { text-align: right; color: #e0e0e0; font-weight: 600; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; color: #fff; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a3e; }
 </style>
 </head>
 <body>
@@ -76,33 +85,27 @@
   <p class="subtitle" id="timestamp"></p>
 
   <div class="section-title">💸 Cost Tracker</div>
+
+  <!-- Period Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="setCostPeriod('day', this)">Today</button>
+    <button class="tab" onclick="setCostPeriod('week', this)">This Week</button>
+    <button class="tab" onclick="setCostPeriod('month', this)">This Month</button>
+    <button class="tab" onclick="setCostPeriod('year', this)">This Year</button>
+  </div>
+
   <div class="grid">
-    <div class="card">
-      <div class="card-title">🤖 AI — Session Estimate</div>
-      <div class="big-number" id="ai-cost">$0.00</div>
-      <div style="margin-top:16px;">
-        <div class="stat-row"><span class="stat-label">Model</span><span class="stat-value">claude-sonnet-4-6</span></div>
-        <div class="stat-row"><span class="stat-label">Context Used</span><span class="stat-value">86k / 200k (43%)</span></div>
-        <div class="stat-row"><span class="stat-label">Cache Hit Rate</span><span class="stat-value">34%</span></div>
-        <div class="stat-row"><span class="stat-label">Tokens In (new)</span><span class="stat-value">~193k</span></div>
-        <div class="stat-row"><span class="stat-label">Tokens Out</span><span class="stat-value">~1.7k</span></div>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" style="width:43%"></div></div>
-      <div class="progress-label"><span>86k used</span><span>200k max</span></div>
+    <!-- Cost Breakdown -->
+    <div class="card" style="grid-column: span 2;">
+      <div class="card-title">💳 Spending Breakdown</div>
+      <table class="cost-table">
+        <thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th></tr></thead>
+        <tbody id="cost-table-body"></tbody>
+      </table>
+      <div class="cost-total"><span id="cost-period-label">Today's Total</span><span id="cost-total-amount">$0.00</span></div>
     </div>
 
-    <div class="card">
-      <div class="card-title">📅 Monthly Fixed Costs</div>
-      <div class="cost-row"><span>Anthropic API</span><span class="cost-variable">Variable</span></div>
-      <div class="cost-row"><span>Brave Search API</span><span class="cost-free">Free ($5 credit/mo)</span></div>
-      <div class="cost-row"><span>Google Cloud APIs</span><span class="cost-free">Free tier</span></div>
-      <div class="cost-row"><span>GitHub</span><span class="cost-free">Free</span></div>
-      <div class="cost-row"><span>Vercel</span><span class="cost-free">Free tier</span></div>
-      <div class="cost-row"><span>Tailscale</span><span class="cost-free">Free tier</span></div>
-      <div class="cost-row"><span>GoDaddy (rocowo.com)</span><span class="cost-paid">~$20/yr</span></div>
-      <div class="total-row"><span>Monthly Fixed</span><span class="cost-free">~$0 / month</span></div>
-    </div>
-
+    <!-- Free Tier Limits -->
     <div class="card">
       <div class="card-title">📊 Free Tier Limits</div>
       <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value">2,000/mo</span></div>
@@ -225,6 +228,56 @@
     document.getElementById('ai-cost').innerHTML = '$' + cost.toFixed(2) + ' <span>est. today</span>';
   }
 
+  let costData = [];
+  let currentPeriod = 'day';
+
+  async function loadCosts() {
+    try {
+      const res = await fetch('/dashboard/data/costs.json?t=' + Date.now());
+      const data = await res.json();
+      costData = data.entries || [];
+      renderCosts(currentPeriod);
+    } catch(e) {
+      console.log('Could not load costs:', e);
+    }
+  }
+
+  function setCostPeriod(period, btn) {
+    currentPeriod = period;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderCosts(period);
+  }
+
+  function renderCosts(period) {
+    const now = new Date();
+    const labels = { day: "Today's Total", week: "This Week's Total", month: "This Month's Total", year: "This Year's Total" };
+    document.getElementById('cost-period-label').textContent = labels[period];
+
+    const filtered = costData.filter(e => {
+      const d = new Date(e.date);
+      if (period === 'day') return d.toDateString() === now.toDateString();
+      if (period === 'week') {
+        const weekAgo = new Date(now); weekAgo.setDate(now.getDate() - 7);
+        return d >= weekAgo;
+      }
+      if (period === 'month') return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+      if (period === 'year') return d.getFullYear() === now.getFullYear();
+    });
+
+    const tbody = document.getElementById('cost-table-body');
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="color:#333;padding:16px 0;">No entries for this period</td></tr>';
+    } else {
+      tbody.innerHTML = filtered.map(e =>
+        `<tr><td>${e.date}</td><td>${e.category}</td><td style="color:#666;">${e.description}</td><td>$${e.amount.toFixed(2)}</td></tr>`
+      ).join('');
+    }
+
+    const total = filtered.reduce((sum, e) => sum + e.amount, 0);
+    document.getElementById('cost-total-amount').textContent = '$' + total.toFixed(2);
+  }
+
   function toggleScopes() {
     const list = document.getElementById('scope-list');
     const arrow = document.getElementById('scope-arrow');
@@ -237,6 +290,8 @@
     }
   }
 
+  const _origShow = showDashboard;
+  showDashboard = function() { _origShow(); loadCosts(); };
   if (sessionStorage.getItem('auth') === '1') showDashboard();
 </script>
 
