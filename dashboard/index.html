@@ -126,7 +126,28 @@
 
     <div class="card">
       <div class="card-title">🔌 Connected Services</div>
-      <div class="stat-row"><span class="stat-label">Google APIs</span><span class="stat-value"><span class="badge badge-green">14 scopes</span></span></div>
+      <div class="stat-row" style="cursor:pointer;" onclick="toggleScopes()">
+        <span class="stat-label">Google APIs</span>
+        <span class="stat-value"><span class="badge badge-green">14 scopes</span> <span id="scope-arrow" style="color:#555;font-size:0.75rem;">▼</span></span>
+      </div>
+      <div id="scope-list" style="display:none; padding:8px 0 4px 0; border-bottom:1px solid #1a1a28;">
+        <div style="font-size:0.75rem; color:#7c6dfa; line-height:2;">
+          ✉️ Gmail (modify)<br>
+          📅 Google Calendar<br>
+          💾 Google Drive<br>
+          📊 Google Sheets<br>
+          👤 Google Contacts<br>
+          ▶️ YouTube<br>
+          📈 Google Analytics<br>
+          📈 Google Analytics (read-only)<br>
+          🔍 Google Search Console<br>
+          🏢 Google Business Profile<br>
+          📢 Google Ads<br>
+          📋 Google Forms (create)<br>
+          📋 Google Forms (responses)<br>
+          ☁️ Google Cloud Storage
+        </div>
+      </div>
       <div class="stat-row"><span class="stat-label">GitHub</span><span class="stat-value"><span class="badge badge-green">rocowo</span></span></div>
       <div class="stat-row"><span class="stat-label">Vercel</span><span class="stat-value"><span class="badge badge-green">rocowo-web</span></span></div>
       <div class="stat-row"><span class="stat-label">Brave Search</span><span class="stat-value"><span class="badge badge-green">Active</span></span></div>
@@ -202,6 +223,18 @@
 
     const cost = (193000/1e6*3) + (99000/1e6*0.30) + (1700/1e6*15);
     document.getElementById('ai-cost').innerHTML = '$' + cost.toFixed(2) + ' <span>est. today</span>';
+  }
+
+  function toggleScopes() {
+    const list = document.getElementById('scope-list');
+    const arrow = document.getElementById('scope-arrow');
+    if (list.style.display === 'none') {
+      list.style.display = 'block';
+      arrow.textContent = '▲';
+    } else {
+      list.style.display = 'none';
+      arrow.textContent = '▼';
+    }
   }
 
   if (sessionStorage.getItem('auth') === '1') showDashboard();
