@@ -21,7 +21,7 @@ const canvas = document.getElementById('logo');
 const ctx = canvas.getContext('2d');
 
 const W = 710, H = 670;
-const cx = 355, cy = 300; // diamond center
+const cx = 355, cy = 260; // diamond center — moved up
 
 // Background
 ctx.fillStyle = '#0D0D0D';
@@ -54,11 +54,11 @@ document.fonts.ready.then(() => {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
 
-  const baselineY = 430;
-  const fontSize = 105;
+  const baselineY = 450;
+  const upperSize = 108;
+  const lowerSize = 72;
+  const letterSpacing = 2;
 
-  // Draw each character with mixed case sizing
-  // R(upper) o(lower) C(upper) o(lower) W(upper) o(lower)
   const chars = [
     { ch: 'R', upper: true },
     { ch: 'o', upper: false },
@@ -68,33 +68,24 @@ document.fonts.ready.then(() => {
     { ch: 'o', upper: false },
   ];
 
-  // Measure total width first
-  const upperSize = fontSize;
-  const lowerSize = fontSize * 0.68; // ~48/70 ratio
-
-  ctx.font = `300 ${upperSize}px 'Raleway', 'Montserrat', sans-serif`;
-  const letterSpacing = 5;
-
-  // Calculate widths
+  // Measure total width
   let totalWidth = 0;
   const widths = chars.map(c => {
-    const size = c.upper ? upperSize : lowerSize;
-    ctx.font = `300 ${size}px 'Raleway', 'Montserrat', sans-serif`;
+    ctx.font = `300 ${c.upper ? upperSize : lowerSize}px 'Raleway', sans-serif`;
     const w = ctx.measureText(c.ch).width;
     totalWidth += w;
     return w;
   });
   totalWidth += letterSpacing * (chars.length - 1);
 
-  // Draw characters left to right, centered
+  // Draw centered
   let x = cx - totalWidth / 2;
   chars.forEach((c, i) => {
-    const size = c.upper ? upperSize : lowerSize;
-    // Align lowercase to baseline properly
-    const yOffset = c.upper ? 0 : (upperSize - lowerSize) * 0.1;
-    ctx.font = `300 ${size}px 'Raleway', 'Montserrat', sans-serif`;
+    ctx.font = `300 ${c.upper ? upperSize : lowerSize}px 'Raleway', sans-serif`;
     ctx.textAlign = 'left';
-    ctx.fillText(c.ch, x, baselineY + yOffset);
+    // Align lowercase baseline to match uppercase baseline
+    const yOff = c.upper ? 0 : (upperSize - lowerSize) * 0.08;
+    ctx.fillText(c.ch, x, baselineY + yOff);
     x += widths[i] + letterSpacing;
   });
 });
