@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RoCoWo — Clean & Minimal Concepts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0f; font-family: 'Inter', sans-serif; padding: 40px 24px; color: #e0e0e0; }
+  h1 { font-size: 1.2rem; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 0.8rem; color: #555; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .concept { background: #111118; border: 2px solid #1e1e2e; border-radius: 16px; padding: 32px; cursor: pointer; transition: border-color 0.2s; }
+  .concept:hover { border-color: #7c6dfa; }
+  .concept.selected { border-color: #7c6dfa; background: #13111e; }
+  .concept-num { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 20px; }
+  .logo-area { display: flex; align-items: center; justify-content: center; height: 120px; margin-bottom: 16px; }
+  .logo-area-dark { background: #000; border-radius: 10px; margin-bottom: 8px; }
+  .logo-area-light { background: #fff; border-radius: 10px; margin-bottom: 16px; }
+  .concept-desc { font-size: 0.75rem; color: #555; line-height: 1.7; }
+  .concept-tag { display: inline-block; margin-top: 10px; padding: 3px 10px; background: #1a1a2e; border-radius: 20px; font-size: 0.68rem; color: #7c6dfa; }
+
+  /* ── CONCEPT A — Bracket Mark ── */
+  .logo-a { display: flex; align-items: center; gap: 10px; }
+  .logo-a .mark { font-size: 1.8rem; font-weight: 200; color: #7c6dfa; letter-spacing: -4px; font-family: 'Inter', sans-serif; }
+  .logo-a .word { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .logo-a .word em { color: #7c6dfa; font-style: normal; }
+  .logo-a-light .word { color: #111; }
+
+  /* ── CONCEPT B — Dot Accent ── */
+  .logo-b { display: flex; align-items: center; gap: 8px; }
+  .logo-b .word { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 600; color: #fff; letter-spacing: -0.5px; }
+  .logo-b .dot { width: 7px; height: 7px; background: #34d399; border-radius: 50%; margin-bottom: 12px; }
+  .logo-b-light .word { color: #111; }
+
+  /* ── CONCEPT C — Slash Divider ── */
+  .logo-c { display: flex; align-items: center; gap: 0; }
+  .logo-c .seg { font-family: 'DM Sans', sans-serif; font-size: 1.4rem; font-weight: 500; color: #fff; }
+  .logo-c .slash { font-size: 1.8rem; font-weight: 200; color: #7c6dfa; margin: 0 2px; }
+  .logo-c-light .seg { color: #111; }
+
+  /* ── CONCEPT D — Stacked ── */
+  .logo-d { display: flex; flex-direction: column; align-items: center; }
+  .logo-d .top { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: 8px; text-transform: uppercase; }
+  .logo-d .line { width: 100%; height: 1.5px; background: linear-gradient(90deg, transparent, #7c6dfa, #34d399, transparent); margin: 4px 0; }
+  .logo-d .bot { font-size: 0.6rem; letter-spacing: 6px; color: #555; text-transform: uppercase; }
+  .logo-d-light .top { color: #111; }
+
+  /* ── CONCEPT E — Underline Mark ── */
+  .logo-e { display: flex; align-items: flex-end; gap: 1px; }
+  .logo-e .ro { font-family: 'Inter', sans-serif; font-size: 1.7rem; font-weight: 800; color: #fff; }
+  .logo-e .co { font-family: 'Inter', sans-serif; font-size: 1.7rem; font-weight: 800; color: #7c6dfa; border-bottom: 3px solid #7c6dfa; padding-bottom: 1px; }
+  .logo-e .wo { font-family: 'Inter', sans-serif; font-size: 1.7rem; font-weight: 800; color: #fff; }
+  .logo-e-light .ro { color: #111; }
+  .logo-e-light .wo { color: #111; }
+
+  /* ── CONCEPT F — Icon + Word Tight ── */
+  .logo-f { display: flex; align-items: center; gap: 10px; }
+  .logo-f .icon { width: 36px; height: 36px; border-radius: 8px; background: #7c6dfa; display: flex; align-items: center; justify-content: center; }
+  .logo-f .icon svg { width: 20px; height: 20px; }
+  .logo-f .word { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .logo-f .word span { font-weight: 300; color: #888; }
+  .logo-f-light .word { color: #111; }
+  .logo-f-light .word span { color: #999; }
+</style>
+</head>
+<body>
+
+<h1>RoCoWo — Clean & Minimal</h1>
+<p class="subtitle">6 variations — click to select your favorite</p>
+
+<div class="grid">
+
+  <!-- A -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept A — Bracket Mark</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-a">
+        <div class="mark">{ }</div>
+        <div class="word">Ro<em>Co</em>Wo</div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-a logo-a-light">
+        <div class="mark">{ }</div>
+        <div class="word">Ro<em>Co</em>Wo</div>
+      </div>
+    </div>
+    <div class="concept-desc">Bracket mark hints at code/tech. Purple accent on "Co" creates rhythm. Feels like a modern SaaS or dev tool brand.</div>
+    <span class="concept-tag">Tech / SaaS</span>
+  </div>
+
+  <!-- B -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept B — Dot Accent</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-b">
+        <div class="word">RoCoWo</div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-b logo-b-light">
+        <div class="word">RoCoWo</div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <div class="concept-desc">Clean wordmark with a single green dot — like a "live" indicator. Simple, memorable, works everywhere. The dot implies something active and alive.</div>
+    <span class="concept-tag">Startup / Product</span>
+  </div>
+
+  <!-- C -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept C — Slash Divider</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-c">
+        <div class="seg">Ro</div>
+        <div class="slash">/</div>
+        <div class="seg">Co</div>
+        <div class="slash">/</div>
+        <div class="seg">Wo</div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-c logo-c-light">
+        <div class="seg">Ro</div>
+        <div class="slash">/</div>
+        <div class="seg">Co</div>
+        <div class="slash">/</div>
+        <div class="seg">Wo</div>
+      </div>
+    </div>
+    <div class="concept-desc">Slash separators break the name into three parts — like a file path or URL. Feels technical but clean. Each segment could represent a pillar of the business.</div>
+    <span class="concept-tag">Technical / Bold</span>
+  </div>
+
+  <!-- D -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept D — Stacked + Gradient Line</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-d">
+        <div class="top">ROCOWO</div>
+        <div class="line"></div>
+        <div class="bot">Building the future</div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-d logo-d-light">
+        <div class="top">ROCOWO</div>
+        <div class="line"></div>
+        <div class="bot">Building the future</div>
+      </div>
+    </div>
+    <div class="concept-desc">All-caps stacked layout with a gradient divider line. Feels authoritative and premium. The tagline beneath adds context without cluttering the mark.</div>
+    <span class="concept-tag">Premium / Authority</span>
+  </div>
+
+  <!-- E -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept E — Underline Accent</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-e">
+        <div class="ro">Ro</div>
+        <div class="co">Co</div>
+        <div class="wo">Wo</div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-e logo-e-light">
+        <div class="ro">Ro</div>
+        <div class="co">Co</div>
+        <div class="wo">Wo</div>
+      </div>
+    </div>
+    <div class="concept-desc">The middle "Co" is underlined and colored — drawing the eye to the center of the name. Feels like it's saying "this is the core." Clean and punchy.</div>
+    <span class="concept-tag">Distinctive / Punchy</span>
+  </div>
+
+  <!-- F -->
+  <div class="concept" onclick="select(this)">
+    <div class="concept-num">Concept F — Icon + Wordmark</div>
+    <div class="logo-area logo-area-dark">
+      <div class="logo-f">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L18 6.5V13.5L10 18L2 13.5V6.5L10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+            <circle cx="10" cy="10" r="2.5" fill="white"/>
+          </svg>
+        </div>
+        <div class="word">RoCoWo<span>.com</span></div>
+      </div>
+    </div>
+    <div class="logo-area logo-area-light">
+      <div class="logo-f logo-f-light">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L18 6.5V13.5L10 18L2 13.5V6.5L10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+            <circle cx="10" cy="10" r="2.5" fill="white"/>
+          </svg>
+        </div>
+        <div class="word">RoCoWo<span>.com</span></div>
+      </div>
+    </div>
+    <div class="concept-desc">Purple icon mark (hexagon with center dot) paired with wordmark. The ".com" in muted gray subtly signals web-first. Versatile — icon works alone as app icon.</div>
+    <span class="concept-tag">Versatile / Web-first</span>
+  </div>
+
+</div>
+
+<script>
+  function select(el) {
+    document.querySelectorAll('.concept').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+</script>
+
+</body>
+</html>
