@@ -233,14 +233,10 @@
   let currentPeriod = 'day';
 
   async function loadCosts() {
-    try {
-      const res = await fetch('/dashboard/data/costs.json?t=' + Date.now());
-      const data = await res.json();
-      costData = data.entries || [];
-      renderCosts(currentPeriod);
-    } catch(e) {
-      console.log('Could not load costs:', e);
-    }
+    // Embedded cost data — updated by Sage automatically
+    const data = {"entries":[{"date":"2026-02-28","category":"Anthropic API","description":"claude-sonnet-4-6 session","amount":0.61},{"date":"2026-02-28","category":"GoDaddy","description":"rocowo.com domain (annual, prorated)","amount":1.67}]};
+    costData = data.entries || [];
+    renderCosts(currentPeriod);
   }
 
   function setCostPeriod(period, btn) {
@@ -257,7 +253,8 @@
 
     const filtered = costData.filter(e => {
       const d = new Date(e.date);
-      if (period === 'day') return e.date === now.toISOString().slice(0,10);
+      const localDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+      if (period === 'day') return e.date === localDate;
       if (period === 'week') {
         const weekAgo = new Date(now); weekAgo.setDate(now.getDate() - 7);
         return d >= weekAgo;
