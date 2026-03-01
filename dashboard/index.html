@@ -201,6 +201,7 @@
     if (val === PASSWORD) {
       sessionStorage.setItem('auth', '1');
       showDashboard();
+      loadCosts();
     } else {
       document.getElementById('login-error').style.display = 'block';
     }
@@ -256,7 +257,7 @@
 
     const filtered = costData.filter(e => {
       const d = new Date(e.date);
-      if (period === 'day') return d.toDateString() === now.toDateString();
+      if (period === 'day') return e.date === now.toISOString().slice(0,10);
       if (period === 'week') {
         const weekAgo = new Date(now); weekAgo.setDate(now.getDate() - 7);
         return d >= weekAgo;
@@ -290,9 +291,7 @@
     }
   }
 
-  const _origShow = showDashboard;
-  showDashboard = function() { _origShow(); loadCosts(); };
-  if (sessionStorage.getItem('auth') === '1') showDashboard();
+  if (sessionStorage.getItem('auth') === '1') { showDashboard(); loadCosts(); }
 </script>
 
 </body>
