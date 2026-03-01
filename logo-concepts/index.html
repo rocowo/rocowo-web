@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RoCoWo Logo Concepts</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 40px 24px; color: #e0e0e0; }
+  h1 { font-size: 1.2rem; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 0.8rem; color: #555; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .concept { background: #111118; border: 1px solid #1e1e2e; border-radius: 16px; padding: 32px; }
+  .concept-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 20px; }
+  .logo-area { display: flex; align-items: center; justify-content: center; height: 140px; margin-bottom: 20px; }
+  .concept-desc { font-size: 0.78rem; color: #666; line-height: 1.6; }
+
+  /* 1. CLEAN & MINIMAL */
+  .logo-minimal { display: flex; align-items: center; gap: 10px; }
+  .logo-minimal .mark { width: 40px; height: 40px; border: 2.5px solid #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -1px; }
+  .logo-minimal .wordmark { font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -1px; }
+  .logo-minimal .wordmark span { color: #7c6dfa; }
+
+  /* 2. BOLD & GEOMETRIC */
+  .logo-bold { display: flex; align-items: center; gap: 14px; }
+  .logo-bold .mark { position: relative; width: 48px; height: 48px; }
+  .logo-bold .mark .r1 { position: absolute; top: 0; left: 0; width: 28px; height: 28px; background: #7c6dfa; border-radius: 4px 4px 0 4px; }
+  .logo-bold .mark .r2 { position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; background: #34d399; border-radius: 4px 0 4px 4px; }
+  .logo-bold .wordmark { font-size: 1.8rem; font-weight: 900; color: #fff; letter-spacing: -2px; text-transform: uppercase; }
+
+  /* 3. ORGANIC & HUMAN */
+  .logo-organic { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .logo-organic .mark { font-size: 2.8rem; }
+  .logo-organic .wordmark { font-size: 1.5rem; font-weight: 600; color: #fff; letter-spacing: 3px; text-transform: uppercase; font-family: Georgia, serif; }
+  .logo-organic .tagline { font-size: 0.65rem; color: #888; letter-spacing: 4px; text-transform: uppercase; }
+
+  /* 4. DARK & PREMIUM */
+  .logo-premium { display: flex; align-items: center; gap: 14px; }
+  .logo-premium .mark { width: 44px; height: 44px; background: linear-gradient(135deg, #7c6dfa, #34d399); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .logo-premium .mark-inner { width: 36px; height: 36px; background: #0a0a0f; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .logo-premium .right { display: flex; flex-direction: column; }
+  .logo-premium .wordmark { font-size: 1.5rem; font-weight: 300; color: #fff; letter-spacing: 4px; text-transform: uppercase; }
+  .logo-premium .sub { font-size: 0.55rem; color: #555; letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; }
+
+  /* Dark backgrounds for contrast */
+  .bg-white { background: #ffffff; border-color: #ddd; }
+  .bg-dark { background: #000; }
+  .concept.bg-white .concept-title { color: #999; }
+  .concept.bg-white .concept-desc { color: #888; }
+  .concept.bg-white .logo-minimal .mark { border-color: #111; color: #111; }
+  .concept.bg-white .logo-minimal .wordmark { color: #111; }
+  .concept.bg-white .logo-bold .wordmark { color: #111; }
+  .concept.bg-white .logo-organic .wordmark { color: #111; }
+  .concept.bg-white .logo-organic .tagline { color: #888; }
+
+  .toggle-bg { font-size: 0.7rem; color: #555; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<h1>RoCoWo Logo Concepts</h1>
+<p class="subtitle">4 directions — pick your favorite or mix elements</p>
+
+<div class="grid">
+
+  <!-- 1. CLEAN & MINIMAL -->
+  <div class="concept" id="c1">
+    <div class="concept-title">① Clean & Minimal</div>
+    <div class="logo-area">
+      <div class="logo-minimal">
+        <div class="mark">RC</div>
+        <div class="wordmark">Ro<span>Co</span>Wo</div>
+      </div>
+    </div>
+    <div class="concept-desc">Simple lettermark with a modern wordmark. The purple accent on "Co" adds personality without noise. Works at any size — app icon, business card, billboard.</div>
+    <span class="toggle-bg" onclick="toggleBg('c1')">Toggle light background</span>
+  </div>
+
+  <!-- 2. BOLD & GEOMETRIC -->
+  <div class="concept" id="c2">
+    <div class="concept-title">② Bold & Geometric</div>
+    <div class="logo-area">
+      <div class="logo-bold">
+        <div class="mark">
+          <div class="r1"></div>
+          <div class="r2"></div>
+        </div>
+        <div class="wordmark">RCW</div>
+      </div>
+    </div>
+    <div class="concept-desc">Two overlapping squares in brand colors — purple and green. Represents duality, growth, intersection of ideas. Bold abbreviation feels like a power brand.</div>
+    <span class="toggle-bg" onclick="toggleBg('c2')">Toggle light background</span>
+  </div>
+
+  <!-- 3. ORGANIC & HUMAN -->
+  <div class="concept" id="c3">
+    <div class="concept-title">③ Organic & Human</div>
+    <div class="logo-area">
+      <div class="logo-organic">
+        <div class="mark">🌿</div>
+        <div class="wordmark">RoCoWo</div>
+        <div class="tagline">Build · Connect · Grow</div>
+      </div>
+    </div>
+    <div class="concept-desc">Warm and approachable with a serif wordmark and plant emoji mark. The tagline "Build · Connect · Grow" hints at what RoCoWo is about. Community-forward feel.</div>
+    <span class="toggle-bg" onclick="toggleBg('c3')">Toggle light background</span>
+  </div>
+
+  <!-- 4. DARK & PREMIUM -->
+  <div class="concept" id="c4">
+    <div class="concept-title">④ Dark & Premium</div>
+    <div class="logo-area">
+      <div class="logo-premium">
+        <div class="mark">
+          <div class="mark-inner">RCW</div>
+        </div>
+        <div class="right">
+          <div class="wordmark">ROCOWO</div>
+          <div class="sub">Est. 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-desc">Gradient ring mark with a dark cutout center. Thin letterforms, wide spacing. Feels high-end and exclusive. "Est. 2026" adds legitimacy from day one.</div>
+    <span class="toggle-bg" onclick="toggleBg('c4')">Toggle light background</span>
+  </div>
+
+</div>
+
+<script>
+  function toggleBg(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('bg-white');
+  }
+</script>
+
+</body>
+</html>
