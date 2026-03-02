@@ -117,7 +117,7 @@
   <div class="tabs">
     <button class="tab active" onclick="setPeriod('day',this,'pnl')">Today</button>
     <button class="tab" onclick="setPeriod('week',this,'pnl')">This Week</button>
-    <button class="tab" onclick="setPeriod('month',this,'pnl')">This Month</button>
+    <button class="tab" onclick="setPeriod('month',this,'pnl')">Last 30 Days</button>
     <button class="tab" onclick="setPeriod('year',this,'pnl')">This Year</button>
   </div>
   <div class="grid">
@@ -153,7 +153,7 @@
       <div class="card-title">👥 Traffic</div>
       <div class="stat-row"><span class="stat-label">Visitors Today</span><span class="stat-value" id="visitors-today">0</span></div>
       <div class="stat-row"><span class="stat-label">Visitors This Week</span><span class="stat-value" id="visitors-week">0</span></div>
-      <div class="stat-row"><span class="stat-label">Visitors This Month</span><span class="stat-value" id="visitors-month">0</span></div>
+      <div class="stat-row"><span class="stat-label">Visitors Last 30 Days</span><span class="stat-value" id="visitors-month">0</span></div>
       <div class="stat-row"><span class="stat-label">Email Subscribers</span><span class="stat-value" id="subscribers">0</span></div>
       <div class="stat-row"><span class="stat-label">Conversion Rate</span><span class="stat-value" id="conversion">0%</span></div>
     </div>
@@ -255,7 +255,7 @@
       const d = new Date(e.date + 'T12:00:00');
       if (period === 'day') return e.date === localToday();
       if (period === 'week') { const w = new Date(now); w.setDate(now.getDate()-7); return d >= w; }
-      if (period === 'month') return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+      if (period === 'month') { const m = new Date(now); m.setDate(now.getDate()-30); return d >= m; }
       if (period === 'year') return d.getFullYear()===now.getFullYear();
     });
   }
@@ -268,7 +268,7 @@
   }
 
   function renderPnL(period) {
-    const labels = { day:'Today', week:'This Week', month:'This Month', year:'This Year' };
+    const labels = { day:'Today', week:'This Week', month:'Last 30 Days', year:'This Year' };
     const label = labels[period];
 
     const costs = filterByPeriod(METRICS.costs, period);
