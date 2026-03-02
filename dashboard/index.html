@@ -197,7 +197,7 @@
     </div>
     <div class="card">
       <div class="card-title">🔌 Connected Services</div>
-      <div class="stat-row" style="cursor:pointer;" onclick="toggleScopes()">
+      <div class="stat-row" style="cursor:pointer;-webkit-tap-highlight-color:rgba(124,109,250,0.15);user-select:none;" onclick="toggleScopes()" ontouchend="toggleScopes();event.preventDefault();">
         <span class="stat-label">Google APIs</span>
         <span class="stat-value"><span class="badge badge-green">14 scopes</span> <span id="scope-arrow" style="color:#555;font-size:0.75rem;">▼</span></span>
       </div>
