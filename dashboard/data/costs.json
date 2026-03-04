@@ -1,22 +1,28 @@
 {
-  "updated": "2026-02-28T22:00:00-05:00",
+  "updated": "2026-03-04T02:33:00-05:00",
   "entries": [
-    {
-      "date": "2026-02-28",
-      "category": "Anthropic API",
-      "description": "claude-sonnet-4-6 session",
-      "amount": 0.61
-    },
     {
       "date": "2026-02-28",
       "category": "GoDaddy",
       "description": "rocowo.com domain (annual, prorated)",
       "amount": 1.67
+    },
+    {
+      "date": "2026-03-03",
+      "category": "Anthropic API",
+      "description": "claude-sonnet-4-6 — auto-tracked",
+      "amount": 0.317514
+    },
+    {
+      "date": "2026-03-04",
+      "category": "Anthropic API",
+      "description": "claude-sonnet-4-6 — auto-tracked",
+      "amount": 0.130468
     }
   ],
   "fixed": [
     { "name": "GoDaddy (rocowo.com)", "monthly": 1.67, "notes": "~$20/yr" },
-    { "name": "Anthropic API", "monthly": null, "notes": "Variable — pay per use" },
+    { "name": "Anthropic API", "monthly": null, "notes": "Variable — auto-tracked daily" },
     { "name": "Brave Search", "monthly": 0, "notes": "Free ($5 credit/mo)" },
     { "name": "Google Cloud", "monthly": 0, "notes": "Free tier" },
     { "name": "GitHub", "monthly": 0, "notes": "Free" },
