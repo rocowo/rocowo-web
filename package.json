@@ -1,0 +1,7 @@
+{
+  "name": "rocowo-web",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo \"window.DASHBOARD_PASSWORD = '$DASHBOARD_PASSWORD';\" > dashboard/config.js"
+  }
+}
